@@ -8,7 +8,7 @@
 {% for key, value in catalog_item.items %}
 	{% if key == 'catalogs' %}
 		{# catalogs (for editing purposes) #}
-		<div class='manifest_section'>
+		<div class='catalog_item_section'>
 		<div class="section_label">Catalogs</div>
 		<ul id='catalogs' class='catalogs_section unstyled'>
 			{% for item in value %}
