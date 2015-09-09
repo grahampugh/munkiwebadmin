@@ -5,7 +5,7 @@
 
 {% for key, value in catalog_item.items %}
     {% if value|type_is:'array' %}
-    	{% if key == 'catalog' %}
+    	{% if key == 'catalogs' %}
             {# special case: catalogs (for editing purposes) #}
             <tr><th scope="row"><style="font-color: red;">{{ key }}</style></th>
             <td>
