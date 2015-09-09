@@ -4,26 +4,38 @@
 	<input type='button' class='edit btn' value='Edit'></input>
 </div>
 </h3>
+
+{# catalogs (for editing purposes) #}
+{% for key, value in catalog_item.items %}
+	{% if key == 'catalogs' %}
+		<div class='manifest_section'>
+		<div class="section_label">Catalogs</div>
+		<ul id='catalogs' class='catalogs_section unstyled'>
+			{% for item in value %}
+				<li id='{{ item }}' class='lineitem'>
+				  <a href='/catalog/{{ item }}/'>
+					  <div class='editable'>{{ item }}</div>
+				  </a>
+				{% endif %}
+				</li>
+			{% endfor %}
+		</ul>
+		</div>
+    {% endif %}
+{% endfor %}
+		
+
 <div class='item_detail'>
 <table class='table table-striped table-condensed'>
 
 {% for key, value in catalog_item.items %}
     {% if value|type_is:'array' %}
-    	{% if key == 'catalogs' %}
-            {# special case: catalogs (for editing purposes) #}
-            <tr><th scope="row">** {{ key }} **</th>
-            <td>
-                {% for item in value %}
-                    {{ item }}
-                    {% if not forloop.last %}<br />{% endif %}
-                {% endfor %}
-            </td></tr>
-        {% elif value.0|type_is:'dictionary' %}
+        {% if value.0|type_is:'dictionary' %}
             {# list of dicts #}
             <tr><th scope="row">{{ key }}</th>
             <td>{% include "catalogs/dict_list.html" with dict_list=value only %}</td></tr>
-        {% else %}
-            {# list of strings #}
+        {% elif key != 'catalogs' %}
+            {# list of strings, ignoring catalogs which we've already dealt with #}
             <tr><th scope="row">{{ key }}</th>
             <td>
                 {% for item in value %}

@@ -114,3 +114,38 @@ tr {
 .listborder {
 	border-top: solid 1px #DDD;
 }
+
+/* copied over from manifests.css */
+
+ul.section, ul.catalogs_section {
+	border-right: 1px solid #C1DAD7;
+	border-left: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	border-top: 1px solid #C1DAD7;
+	/*margin-left: 10px;
+	margin-right: 10px;
+	text-align: left;
+	padding: 6px 6px 6px 12px;
+	background: #EEEEEE;
+	position: relative;
+	left: 0px;
+	list-style-type: none;*/
+}
+.section_label, .name_label {
+	/*font: 14px Helvetica, Arial, Verdana, sans-serif;
+	font: 14px ;*/
+	font-weight: bold;
+	/*padding: 2px 5px;*/
+	margin: 0 0 6px 0;
+	/*display: block;*/
+}
+.lineitem, .nameitem {
+	/*font: 12px Helvetica, Arial, Verdana, sans-serif;*/
+	padding: 2px 2px 2px 2px;
+	margin: 3px 3px;
+	background-color: #FFFFFF;
+	min-height: 16px;
+}
+div.editable {
+	float: left;
+}
