@@ -1,9 +1,7 @@
 {% load catalog_extras %}
 <h3>{{ catalog_item.name }}-{{ catalog_item.version }}
 <div class='pull-right' id='save_and_cancel'>
-{% if user.is_authenticated %}
 	<input type='button' class='edit btn' value='Edit'></input>
-{% endif %}
 </div>
 </h3>
 <div class='item_detail'>
