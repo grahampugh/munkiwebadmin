@@ -5,7 +5,16 @@
 
 {% for key, value in catalog_item.items %}
     {% if value|type_is:'array' %}
-        {% if value.0|type_is:'dictionary' %}
+    	{% if key == 'catalog' %}
+            {# special case: catalogs (for editing purposes) #}
+            <tr><th scope="row"><style="font-color: red;">{{ key }}</style></th>
+            <td>
+                {% for item in value %}
+                    {{ item }}
+                    {% if not forloop.last %}<br />{% endif %}
+                {% endfor %}
+            </td></tr>
+        {% elif value.0|type_is:'dictionary' %}
             {# list of dicts #}
             <tr><th scope="row">{{ key }}</th>
             <td>{% include "catalogs/dict_list.html" with dict_list=value only %}</td></tr>
