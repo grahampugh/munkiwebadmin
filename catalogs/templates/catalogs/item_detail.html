@@ -5,9 +5,9 @@
 </div>
 </h3>
 
-{# catalogs (for editing purposes) #}
 {% for key, value in catalog_item.items %}
 	{% if key == 'catalogs' %}
+		{# catalogs (for editing purposes) #}
 		<div class='manifest_section'>
 		<div class="section_label">Catalogs</div>
 		<ul id='catalogs' class='catalogs_section unstyled'>
@@ -16,7 +16,6 @@
 				  <a href='/catalog/{{ item }}/'>
 					  <div class='editable'>{{ item }}</div>
 				  </a>
-				{% endif %}
 				</li>
 			{% endfor %}
 		</ul>
