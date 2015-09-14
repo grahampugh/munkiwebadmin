@@ -8,5 +8,9 @@ import os
 
 @login_required
 def index(request):
-    return render_to_response('pkginfo/index.html')
+    pkginfo_list = Pkginfo.list()
+
+    return render_to_response('pkginfo/index.html'
+                            {'user': request.user,
+                            'page': 'pkginfo'})
 
