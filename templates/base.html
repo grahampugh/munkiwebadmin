@@ -88,6 +88,9 @@
           <li {% if page == 'licenses' %} class="active" {% endif %}>
             <a href="{% url 'licenses.views.index' %}">Licenses</a>
           </li>
+          <li {% if page == 'pkginfo' %} class="active" {% endif %}>
+            <a href="{% url 'pkginfo.views.index' %}">Pkginfos</a>
+          </li>
         </ul>
         <ul class="nav pull-right">
             <li id="admin" class="loginlogout">
