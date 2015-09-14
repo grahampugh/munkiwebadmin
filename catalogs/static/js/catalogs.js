@@ -38,40 +38,6 @@ function cleanDetailPane() {
     // $('#detail').html('<div></div>')
 }
 
-function getItemDetail(catalog_item_name) {
-    if (inEditMode) {
-        if (! confirm('Discard current changes?')) {
-            event.preventDefault();
-            return;
-        }
-        inEditMode = false;
-        $(window).unbind("beforeunload");
-    }
-    if (!manifest_name) {
-        var manifest_name = $('.manifest_name').attr('id');
-    };
-    $("#imgProgress").show();
-    cleanDetailPane();
-    // get new detail for the pane
-    var manifestURL = '/manifest/detail/' + manifest_name.replace(/\//g, ':');
-    $.get(manifestURL, function(data) {
-        $('#detail').html(data);
-        $('.edit').click(function(){
-            makeEditableItems(catalog_item_name);
-        });
-        $("#imgProgress").hide();
-    });
-    $('.manifest[id="' + catalog_item_name + '"]').addClass('selected');
-    $('.manifest[id!="' + catalog_item_name + '"]').removeClass('selected');
-    $('#delete_manifest').removeClass('disabled');
-    //$('.lineitem_delete').on('click', function() {    
-    //      var r = confirm("Really delete " + manifest_name + "?");
-    //});
-    
-    //location.hash = "/" + manifest_name;
-    event.preventDefault();
-}
-
 
 var inEditMode = false;
 function makeEditableItems(catalog_item_name) {
@@ -104,10 +70,10 @@ function makeEditableItems(catalog_item_name) {
         var list_item = $("<li class='lineitem'><div class='editable'></div><a href='#' class='btn btn-danger btn-mini lineitem_delete'><i class='icon-minus icon-white'></i><a></li>");
         $(this).parent().siblings($('ul')).append(list_item);
         makeEditableItem(
-            manifest_name, autocomplete_data, list_item.children(".editable"));
+            catalog_item_name, autocomplete_data, list_item.children(".editable"));
     });
     $('.edit').val('Save').unbind('click').click(function() {
-        getManifestDetailFromDOMAndSave();
+        getItemDetailFromDOMAndSave();
     });
     $('#save_and_cancel').append("<input type='button' class='cancel btn' value='Cancel' onClick='cancelEdit()'></input>");
     $(window).bind('beforeunload', function(){
@@ -127,7 +93,7 @@ function updateLineItem(item) {
     }
 }
 
-function makeEditableItem(manifest_name, autocomplete_data, editable_div) {
+function makeEditableItem(catalog_item_name, autocomplete_data, editable_div) {
     // commit any existing active lineiteminput
     $('.lineiteminput').each(function(){updateLineItem($(this))});
 
@@ -137,8 +103,6 @@ function makeEditableItem(manifest_name, autocomplete_data, editable_div) {
     var kind = 'items';
     if (grandparent_id == 'catalogs') {
       kind = 'catalogs';
-    } else if (grandparent_id == 'included_manifests') {
-      kind = 'manifests';
     }
     editable_div.replaceWith(input_box);
     input_box.typeahead({source: autocomplete_data[kind]})
@@ -158,6 +122,7 @@ function makeEditableItem(manifest_name, autocomplete_data, editable_div) {
 function cancelEdit() {
     inEditMode = false;
     $(window).unbind("beforeunload");
-    getManifestDetail();
+    getItemDetail();
 }
+
 

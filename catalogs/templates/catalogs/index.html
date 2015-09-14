@@ -1,4 +1,17 @@
 {% extends 'base.html' %}
+{% load url from future %}
+
+{% block extra_style %}
+{% load static %}
+<link rel="stylesheet" href="{% get_static_prefix %}css/catalogs.css" type="text/css" media="all" />
+{% endblock %}
+
+{% block java_script %}
+{% load static %}
+<script type='text/javascript' 
+  src='{% get_static_prefix %}js/catalogs.js'>
+</script>
+{% endblock %}
 
 {% block content %}
 <h3>Catalogs</h3>
