@@ -1,4 +1,7 @@
+{% extends 'base.html' %}
+
 {% load url from future %}
+{% block content %}
 <h3>Packages</h3>
 {% if all_catalog|length %}
 	{# must create a pkglist section in pkginfo.css #}
@@ -36,3 +39,4 @@
 {% else %}
 	<p><i>No Packages.</i></p>
 {% endif %}
+{% endblock %}
