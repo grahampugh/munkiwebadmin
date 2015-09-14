@@ -23,11 +23,9 @@ class Pkginfo(object):
 
         index = 0
         for item in all_catalog:
-            index = 0
-            for item in catalog_items:
-                item['index'] = index
-                index += 1
-            return catalog_items
+            item['index'] = index
+            index += 1
+        return all_catalog
 
 #    @classmethod
 #    def edit(self):
