@@ -22,14 +22,14 @@ class Pkginfo(object):
         of pkg names (strings)'''
 
         index = 0
-		for item in all_catalog:
-        	index = 0
+        for item in all_catalog:
+            index = 0
             for item in catalog_items:
                 item['index'] = index
                 index += 1
             return catalog_items
- 
+
 #    @classmethod
 #    def edit(self):
 #        '''Writes the changes of catalog to each pkginfo file'''
-         
+

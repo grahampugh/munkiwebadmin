@@ -10,7 +10,7 @@ import os
 def index(request):
     pkginfo_list = Pkginfo.list()
 
-    return render_to_response('pkginfo/index.html'
+    return render_to_response('pkginfo/index.html',
                             {'user': request.user,
                             'page': 'pkginfo'})
 
