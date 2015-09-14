@@ -1,6 +1,6 @@
 {% load url from future %}
 <h3>Packages</h3>
-{% if catalog_items|length %}
+{% if all_catalog|length %}
 	{# must create a pkglist section in pkginfo.css #}
 	<p/>
 	<table class='pkglist table table-striped table-condensed'>
@@ -13,16 +13,16 @@
 			</tr>
 		</thead>
 		<tbody>
-	{% for item in catalog_items %}
+	{% for item in all_catalog %}
 			<tr>
 				<td class='item-name'>{{ item_name.grouper }}</td>
 				<td class='version'>
 		{% for item in item_name.list|dictsortreversed:'version' %}
-					<a href='/catalog/{{ catalog_name }}/{{ item.index }}'>{{ item.version }}</a><br />
+					{{ item.version }}<br />
 		{% endfor %}
 				</td>
 				<td>
-		{% for item in item_name.list:'catalog' %}
+		{% for item in item_name.list:'catalogs' %}
 			{% for string in item.items %}
 				{{ string }}<br />
 			{% endfor %}
