@@ -2,9 +2,11 @@
 
 {% block content %}
 <h3>Packages</h3>
+<p>{{ all_catalog }}</p>
+
 {% if all_catalog %}
 	{# must create a pkglist section in pkginfo.css #}
-	<p/>{{ all_catalog }}
+	<p/>
 	<table class='pkglist table table-striped table-condensed'>
 		<thead>
 			<tr>
