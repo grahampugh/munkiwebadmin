@@ -29,7 +29,7 @@ class Pkginfo(object):
                 index += 1
             return catalog_items
  
-    @classmethod
-    def edit(self):
-        '''Writes the changes of catalog to each pkginfo file'''
+#    @classmethod
+#    def edit(self):
+#        '''Writes the changes of catalog to each pkginfo file'''
          
