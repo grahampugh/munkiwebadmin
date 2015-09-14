@@ -1,3 +1,7 @@
+<div id='detail_progress_indicator'>
+  {% load static %}
+  <img src="{% get_static_prefix %}img/loading.gif" style="display: none;" id="imgProgress" />
+</div>
 {% load catalog_extras %}
 <h3>{{ catalog_item.name }}-{{ catalog_item.version }}
 <div class='pull-right' id='save_and_cancel'>
@@ -57,3 +61,5 @@
 
 </table>
 </div>
+<div id="data_storage" data-autocomplete_data='{{ autocomplete_data }}' />
+<div id="csrf_token" style='display:none'>{% csrf_token %}</div>

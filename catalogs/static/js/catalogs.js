@@ -24,6 +24,55 @@ function getCatalogItem(catalog_name, catalog_index, item_name, item_version)   
 
 // copied from manifests.js
 
+function cleanDetailPane() {
+  // unbind any existing event handlers for the detail pane
+    $('.editable').off('dblclick');
+    $('.lineitem_delete').off('click');
+
+    // destroy sortability for existing elements
+    //$('.catalogs_section').sortable('destroy');
+    //$('.included_manifests_section').sortable('destroy');
+    //$('.section').sortable('destroy');
+    
+    // clear detail pane
+    // $('#detail').html('<div></div>')
+}
+
+function getItemDetail(catalog_item_name) {
+    if (inEditMode) {
+        if (! confirm('Discard current changes?')) {
+            event.preventDefault();
+            return;
+        }
+        inEditMode = false;
+        $(window).unbind("beforeunload");
+    }
+    if (!manifest_name) {
+        var manifest_name = $('.manifest_name').attr('id');
+    };
+    $("#imgProgress").show();
+    cleanDetailPane();
+    // get new detail for the pane
+    var manifestURL = '/manifest/detail/' + manifest_name.replace(/\//g, ':');
+    $.get(manifestURL, function(data) {
+        $('#detail').html(data);
+        $('.edit').click(function(){
+            makeEditableItems(catalog_item_name);
+        });
+        $("#imgProgress").hide();
+    });
+    $('.manifest[id="' + catalog_item_name + '"]').addClass('selected');
+    $('.manifest[id!="' + catalog_item_name + '"]').removeClass('selected');
+    $('#delete_manifest').removeClass('disabled');
+    //$('.lineitem_delete').on('click', function() {    
+    //      var r = confirm("Really delete " + manifest_name + "?");
+    //});
+    
+    //location.hash = "/" + manifest_name;
+    event.preventDefault();
+}
+
+
 var inEditMode = false;
 function makeEditableItems(catalog_item_name) {
     // grab autocomplete data from document
