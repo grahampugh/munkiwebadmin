@@ -18,7 +18,7 @@
 		<tbody>
 	{% for pkg in all_catalog_items %}
 			<tr>
-				<td class='item-name'>{{ pkg.name }}</td>
+				<td class='item-name'>{{ pkg }}</td>
 				<td class='version'>
 		{% for item in pkg.list|dictsortreversed:'version' %}
 					{{ item.version }}<br />
