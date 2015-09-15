@@ -8,9 +8,6 @@ from django.conf import settings
 REPO_DIR = settings.MUNKI_REPO_DIR
 random_variable = 'test'
 
-if not os.path.exists(all_catalog_path):
-    fail('Catalogs not accessible')
-
 # Read contents of all pkginfo files. You should be able to do this by reading the contents of catalogs/all
 
 class Pkginfo(object):
