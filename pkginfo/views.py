@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 
 from models import Pkginfo
-#from catalogs.models import Catalog
+from catalogs.models import Catalog
 
 import os
 
