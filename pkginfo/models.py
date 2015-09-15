@@ -19,7 +19,7 @@ class Pkginfo(object):
         if os.path.exists(all_catalog_path):
             try:
                 all_catalog_items = plistlib.readPlist(all_catalog_path)
-                all_catalog_items.sort(key=operator.itemgetter('name','version'))
+#                all_catalog_items.sort(key=operator.itemgetter('name','version'))
                 index = 0
                 for item in all_catalog_items:
                     item['index'] = index
