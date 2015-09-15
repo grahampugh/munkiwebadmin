@@ -16,7 +16,7 @@ class Pkginfo(object):
         '''Returns a list of available pkgs, which is a list
         of pkg names (strings)'''
         all_catalog_path = os.path.join(REPO_DIR, 'catalogs/all')
-        if os.path.exists(ALLCATALOG_PATH):
+        if os.path.exists(all_catalog_path):
             try:
                 all_catalog_items = plistlib.readPlist(all_catalog_path)
                 index = 0
