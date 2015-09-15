@@ -9,7 +9,6 @@ import os
 @login_required
 def index(request):
     all_catalog_items = Pkginfo.detail()
-    random_variable = 'test'
 
     return render_to_response('pkginfo/index.html',
                               {'user': request.user,

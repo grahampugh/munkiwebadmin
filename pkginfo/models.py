@@ -1,5 +1,6 @@
 #from django.db import models
 import os
+import operator
 import plistlib
 
 from django.conf import settings
@@ -20,7 +21,7 @@ class Pkginfo(object):
             try:
                 all_catalog_items = plistlib.readPlist(all_catalog_path)
                 index = 0
-                for item in all_catalog_items:
+                for item in all_catalog_items.sort(key=operator.itemgetter('name','version')):
                     item['index'] = index
                     index += 1
                 return all_catalog_items
