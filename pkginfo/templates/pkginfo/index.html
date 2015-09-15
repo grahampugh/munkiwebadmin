@@ -7,26 +7,26 @@
 {% block content %}
 <h3>Packages</h3>
 
-
-{# Drop-down list for moving to a catalog #}
-<div class='well'>
-	<strong>Move to:
-	<span class='dropdown'>
-	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-	{{ catalog_name }} <b class="caret"></b>
-	</a>
-	<ul class="dropdown-menu">
-	{% for item in catalog_list %}
-	<li><a href="/catalog/{{ item }}">{{ item }}</a></li>
-	{% endfor %}
-	</ul>
-	</span></strong>
-</div>
-{# End of Drop-down list for moving to a catalog #}
-
-
-
 {% if all_catalog_items %}
+
+	{# Drop-down list for moving to a catalog #}
+	<div class='well'>
+		<strong>Move to:
+		<span class='dropdown'>
+		<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+		{{ catalog_name }} <b class="caret"></b>
+		</a>
+		<ul class="dropdown-menu">
+		{% for item in catalog_list %}
+		<li><a href="/catalog/{{ item }}">{{ item }}</a></li>
+		{% endfor %}
+		</ul>
+		</span></strong>
+	</div>
+	{# End of Drop-down list for moving to a catalog #}
+
+
+
 	<p/>
 	<table class='pkglist table table-striped table-condensed'>
 		<thead>
