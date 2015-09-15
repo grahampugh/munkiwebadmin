@@ -10,14 +10,16 @@
 {% if all_catalog_items %}
 
 		{# Drop-down list for moving to a catalog #}
-<form class='well form-horizontal' id='move' action='/pkginfo/' method='post'>
-	<label for='section'>Move selected packages to catalog:</label>
-	<select class='span2' id='section' name='section'>
-		{% for item in catalog_list %}
-			<option value='{{ item }}' {% if item == catalog_name %} selected='selected' {% endif %}>{{ item }}</option>
-		{% endfor %}
-	</select>
-	<input class='btn' type='submit' value='Move' />
+<form id='move' action='/pkginfo/' method='post'>
+	<div class='well form-horizontal'>
+		<label for='section'>Move selected packages to catalog:</label>
+		<select class='span2' id='section' name='section'>
+			{% for item in catalog_list %}
+				<option value='{{ item }}' {% if item == catalog_name %} selected='selected' {% endif %}>{{ item }}</option>
+			{% endfor %}
+		</select>
+		<input class='btn' type='submit' value='Move' />
+	</div>
 
 	<p/>
 	<table class='pkglist table table-striped table-condensed'>
