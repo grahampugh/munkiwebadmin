@@ -16,16 +16,16 @@
 			</tr>
 		</thead>
 		<tbody>
-	{% for item_name in all_catalog_items %}
+	{% for pkg in all_catalog_items %}
 			<tr>
-				<td class='item-name'>{{ item_name }}</td>
+				<td class='item-name'>{{ pkg.name }}</td>
 				<td class='version'>
-		{% for item in item_name.list|dictsortreversed:'version' %}
+		{% for item in pkg.list|dictsortreversed:'version' %}
 					{{ item.version }}<br />
 		{% endfor %}
 				</td>
 				<td class='catalog'>
-		{% for item in item_name.list|dictsortreversed:'catalogs' %}
+		{% for item in pkg.list|dictsortreversed:'catalogs' %}
 			{% for string in item.items %}
 				{{ string }}<br />
 			{% endfor %}
