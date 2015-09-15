@@ -27,13 +27,6 @@ def index(request):
                                }
                               )
 
-# def list(request):
-# 
-#     return render_to_response('pkginfo/index.html',
-#                                }
-#                               )
-
-
 
 
 # @login_required
