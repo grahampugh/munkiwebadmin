@@ -19,8 +19,9 @@ class Pkginfo(object):
         if os.path.exists(all_catalog_path):
             try:
                 all_catalog_items = plistlib.readPlist(all_catalog_path)
+                all_catalog_items.sort(key=operator.itemgetter('name','version'))
                 index = 0
-                for item in all_catalog_items.sort(key=operator.itemgetter('name','version')):
+                for item in all_catalog_items:
                     item['index'] = index
                     index += 1
                 return all_catalog_items
@@ -29,18 +30,18 @@ class Pkginfo(object):
         else:
             return None
 
-    @classmethod
-    def item_detail(self, item_index):
-        '''Returns detail for a single pkg'''
-        all_catalog_path = os.path.join(
-            REPO_DIR, 'catalogs/all')
-        if os.path.exists(all_catalog_path):
-            try:
-                all_catalog_items = plistlib.readPlist(all_catalog_path)
-                return all_catalog_items[int(item_index)]
-            except Exception, errmsg:
-                return None
-        else:
-            return None
+#     @classmethod
+#     def item_detail(self, item_index):
+#         '''Returns detail for a single pkg'''
+#         all_catalog_path = os.path.join(
+#             REPO_DIR, 'catalogs/all')
+#         if os.path.exists(all_catalog_path):
+#             try:
+#                 all_catalog_items = plistlib.readPlist(all_catalog_path)
+#                 return all_catalog_items[int(item_index)]
+#             except Exception, errmsg:
+#                 return None
+#         else:
+#             return None
 
 
