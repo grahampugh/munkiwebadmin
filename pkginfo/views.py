@@ -18,7 +18,8 @@ def index(request):
     elif 'testing' in catalog_list:
         catalog_name = 'testing'
     else:
-        catalog_name = catalog_list[0]
+#        catalog_name = catalog_list[0]
+        catalog_name = 'none'
     return render_to_response('pkginfo/index.html',
                               {'user': request.user,
                                'all_catalog_items': all_catalog_items,
