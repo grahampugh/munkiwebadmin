@@ -8,6 +8,7 @@ from django.conf import settings
 REPO_DIR = settings.MUNKI_REPO_DIR
 all_catalog_path = os.path.join(REPO_DIR, 'catalogs/all')
 all_catalog = plistlib.readPlist(all_catalog_path)
+random_variable = 'test'
 
 if not os.path.exists(all_catalog_path):
     fail('Catalogs not accessible')
