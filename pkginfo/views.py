@@ -3,16 +3,31 @@ from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 
 from models import Pkginfo
+from catalogs.models import Catalog
 
 import os
 
 @login_required
 def index(request):
+    catalog_list = Catalog.list()
     all_catalog_items = Pkginfo.detail()
+
+    catalog_item = None
+    if not catalog_name:
+        if 'production' in catalog_list:
+            catalog_name = 'production'
+        elif 'standard' in catalog_list:
+            catalog_name = 'standard'
+        elif 'testing' in catalog_list:
+            catalog_name = 'testing'
+        else:
+            catalog_name = catalog_list[0]
 
     return render_to_response('pkginfo/index.html',
                               {'user': request.user,
                                'all_catalog_items': all_catalog_items,
+                               'catalog_list': catalog_list,
+                               'catalog_name': catalog_name,
                                }
                               )
 
