@@ -9,8 +9,8 @@ import os
 
 @login_required
 def index(request):
-    catalog_list = Catalog.list()
     all_catalog_items = Pkginfo.detail()
+    catalog_list = Catalog.list()
 
 	if 'production' in catalog_list:
 		catalog_name = 'production'
