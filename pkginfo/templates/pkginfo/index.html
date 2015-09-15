@@ -5,7 +5,6 @@
 <p>Here's the catalog:<br />{{ random_variable }}</p>
 
 {% if all_catalog_items %}
-	{# must create a pkglist section in pkginfo.css #}
 	<p/>
 	<table class='pkglist table table-striped table-condensed'>
 		<thead>
@@ -17,7 +16,7 @@
 			</tr>
 		</thead>
 		<tbody>
-	{% for item in all_catalog_items %}
+	{% for item_name in all_catalog_items %}
 			<tr>
 				<td class='item-name'>{{ item_name.grouper }}</td>
 				<td class='version'>
@@ -25,14 +24,14 @@
 					{{ item.version }}<br />
 		{% endfor %}
 				</td>
-				<td>
+				<td class='catalog'>
 		{% for item in item_name.list|dictsortreversed:'catalogs' %}
 			{% for string in item.items %}
 				{{ string }}<br />
 			{% endfor %}
 		{% endfor %}
 				</td>
-				<td><!-- checkbox --></td>
+				<td><input type="checkbox" /></td>
 			</tr>
 	{% endfor %}
 		</tbody>

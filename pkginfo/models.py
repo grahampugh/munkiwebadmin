@@ -12,7 +12,7 @@ random_variable = 'test'
 
 class Pkginfo(object):
     @classmethod
-    def list(self):
+    def detail(self):
         '''Returns a list of available pkgs, which is a list
         of pkg names (strings)'''
         all_catalog_path = os.path.join(REPO_DIR, 'catalogs/all')
@@ -29,7 +29,18 @@ class Pkginfo(object):
         else:
             return None
 
-#    @classmethod
-#    def edit(self):
-#        '''Writes the changes of catalog to each pkginfo file'''
+    @classmethod
+    def item_detail(self, item_index):
+        '''Returns detail for a single pkg'''
+        all_catalog_path = os.path.join(
+            REPO_DIR, 'catalogs/all')
+        if os.path.exists(all_catalog_path):
+            try:
+                all_catalog_items = plistlib.readPlist(all_catalog_path)
+                return all_catalog_items[int(item_index)]
+            except Exception, errmsg:
+                return None
+        else:
+            return None
+
 
