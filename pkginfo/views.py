@@ -9,7 +9,7 @@ from catalogs.models import Catalog
 import os
 
 @login_required
-def index(self):
+def index(request):
     all_catalog_items = Pkginfo.detail()
     catalog_list = Catalog.list()
     catalog_name = 'none'
