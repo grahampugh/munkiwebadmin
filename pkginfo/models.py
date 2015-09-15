@@ -4,7 +4,6 @@ import plistlib
 
 from django.conf import settings
 
-# MUNKI_REPO_DIR is set to whatever the variable in MWA is, in settings.py
 REPO_DIR = settings.MUNKI_REPO_DIR
 
 # Read contents of all pkginfo files. You should be able to do this by reading the contents of catalogs/all

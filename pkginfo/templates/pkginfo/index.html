@@ -9,7 +9,8 @@
 
 {% if all_catalog_items %}
 
-	{# Drop-down list for moving to a catalog #}
+	{% if catalog_list %}
+		{# Drop-down list for moving to a catalog #}
 	<div class='well'>
 		<strong>Move to:
 		<span class='dropdown'>
@@ -23,7 +24,8 @@
 		</ul>
 		</span></strong>
 	</div>
-	{# End of Drop-down list for moving to a catalog #}
+		{# End of Drop-down list for moving to a catalog #}
+	{% endif %}
 
 
 

@@ -1,13 +1,11 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
-from django.utils.datastructures import SortedDict
 
 from models import Pkginfo
 from catalogs.models import Catalog
 
 import os
-import json
 
 @login_required
 def index(request):
