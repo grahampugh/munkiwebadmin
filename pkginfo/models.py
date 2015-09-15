@@ -14,12 +14,11 @@ class Pkginfo(object):
     def detail(self):
         '''Returns a list of available pkgs, which is a list
         of pkg names (strings)'''
-        from operator import itemgetter
         all_catalog_path = os.path.join(REPO_DIR, 'catalogs/all')
         if os.path.exists(all_catalog_path):
             try:
                 all_catalog_items = plistlib.readPlist(all_catalog_path)
-                all_catalog_items = sorted(all_catalog_items, key=itemgetter('name', 'version'))
+                all_catalog_items = sorted(all_catalog_items, key=lambda x: (x['name'].lower(), x['version']))
                 index = 0
                 for item in all_catalog_items:
                     item['index'] = index
