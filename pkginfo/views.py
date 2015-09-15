@@ -3,13 +3,14 @@ from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 
 from models import Pkginfo
+from catalogs.models import Catalog
 
 import os
 
 @login_required
 def index(request):
     all_catalog_items = Pkginfo.detail()
-    catalog_list = Pkginfo.list()
+    catalog_list = Catalog.list()
     if 'production' in catalog_list:
         catalog_name = 'production'
     elif 'standard' in catalog_list:
