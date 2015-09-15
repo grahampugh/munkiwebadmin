@@ -11,6 +11,7 @@ import os
 def index(request):
     all_catalog_items = Pkginfo.detail()
     catalog_list = Catalog.list()
+    catalog_name = 'none'
     if 'production' in catalog_list:
         catalog_name = 'production'
     elif 'standard' in catalog_list:
@@ -19,7 +20,6 @@ def index(request):
         catalog_name = 'testing'
     else:
 #        catalog_name = catalog_list[0]
-        catalog_name = 'none'
     return render_to_response('pkginfo/index.html',
                               {'user': request.user,
                                'all_catalog_items': all_catalog_items,
