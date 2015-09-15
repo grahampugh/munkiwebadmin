@@ -13,9 +13,6 @@ import json
 def index(request):
     all_catalog_items = Pkginfo.detail()
     catalog_list = Catalog.list()
-    if request.is_ajax():
-        return HttpResponse(json.dumps(catalog_list),
-                            mimetype='application/json')
     if 'production' in catalog_list:
         catalog_name = 'production'
     elif 'standard' in catalog_list:
