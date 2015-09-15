@@ -10,6 +10,13 @@ import os
 @login_required
 def index(request):
     all_catalog_items = Pkginfo.detail()
+    return render_to_response('pkginfo/index.html',
+                              {'user': request.user,
+                               'all_catalog_items': all_catalog_items,
+                               }
+                              )
+
+def list(request):
     catalog_list = Catalog.list()
 
     if 'production' in catalog_list:
@@ -20,14 +27,14 @@ def index(request):
         catalog_name = 'testing'
     else:
         catalog_name = catalog_list[0]
-
     return render_to_response('pkginfo/index.html',
-                              {'user': request.user,
-                               'all_catalog_items': all_catalog_items,
-                               'catalog_list': catalog_list,
+                              {'catalog_list': catalog_list,
                                'catalog_name': catalog_name,
                                }
                               )
+
+
+
 
 # @login_required
 # def item_detail(request, item_index):
