@@ -12,16 +12,14 @@ def index(request):
     catalog_list = Catalog.list()
     all_catalog_items = Pkginfo.detail()
 
-    catalog_item = None
-    if not catalog_name:
-        if 'production' in catalog_list:
-            catalog_name = 'production'
-        elif 'standard' in catalog_list:
-            catalog_name = 'standard'
-        elif 'testing' in catalog_list:
-            catalog_name = 'testing'
-        else:
-            catalog_name = catalog_list[0]
+	if 'production' in catalog_list:
+		catalog_name = 'production'
+	elif 'standard' in catalog_list:
+		catalog_name = 'standard'
+	elif 'testing' in catalog_list:
+		catalog_name = 'testing'
+	else:
+		catalog_name = catalog_list[0]
 
     return render_to_response('pkginfo/index.html',
                               {'user': request.user,
