@@ -28,6 +28,27 @@ class Pkginfo(object):
         else:
             return None
 
+    @classmethod
+    def list(self):
+        '''Returns a list of available catalogs, which is a list
+        of catalog names (strings)'''
+        catalogs_path = os.path.join(REPO_DIR, 'catalogs')
+        catalogs = []
+        for name in os.listdir(catalogs_path):
+            if name.startswith("._") or name == ".DS_Store" or name == 'all':
+                # don't process these
+                continue
+            try:
+                catalog = plistlib.readPlist(
+                    os.path.join(catalogs_path, name))
+            except Exception:
+                # skip items that aren't valid plists
+                pass
+            else:
+                catalogs.append(name)
+        return catalogs
+
+
 #     @classmethod
 #     def item_detail(self, item_index):
 #         '''Returns detail for a single pkg'''
