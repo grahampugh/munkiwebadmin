@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block extra_style %}
+<link rel="stylesheet" href="/catalogs/css/catalogs.css" type="text/css" media="all" />
+{% endblock extra_style %}
+
 {% block content %}
 <h3>Packages</h3>
 
@@ -51,4 +55,4 @@
 {% else %}
 	<p><i>No Packages.</i></p>
 {% endif %}
-{% endblock %}
+{% endblock content %}
