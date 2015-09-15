@@ -4,7 +4,7 @@
 <h3>Packages</h3>
 <p>Here's the catalog:<br />{{ random_variable }}</p>
 
-{% if all_catalog %}
+{% if all_catalog_items %}
 	{# must create a pkglist section in pkginfo.css #}
 	<p/>
 	<table class='pkglist table table-striped table-condensed'>
@@ -17,7 +17,7 @@
 			</tr>
 		</thead>
 		<tbody>
-	{% for item in all_catalog %}
+	{% for item in all_catalog_items %}
 			<tr>
 				<td class='item-name'>{{ item_name.grouper }}</td>
 				<td class='version'>

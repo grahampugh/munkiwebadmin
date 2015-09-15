@@ -6,8 +6,6 @@ from django.conf import settings
 
 # MUNKI_REPO_DIR is set to whatever the variable in MWA is, in settings.py
 REPO_DIR = settings.MUNKI_REPO_DIR
-all_catalog_path = os.path.join(REPO_DIR, 'catalogs/all')
-all_catalog = plistlib.readPlist(all_catalog_path)
 random_variable = 'test'
 
 if not os.path.exists(all_catalog_path):
@@ -20,13 +18,19 @@ class Pkginfo(object):
     def list(self):
         '''Returns a list of available pkgs, which is a list
         of pkg names (strings)'''
-
-
-        index = 0
-        for item in all_catalog:
-            item['index'] = index
-            index += 1
-        return all_catalog
+        all_catalog_path = os.path.join(REPO_DIR, 'catalogs/all')
+        if os.path.exists(ALLCATALOG_PATH):
+            try:
+                all_catalog_items = plistlib.readPlist(all_catalog_path)
+                index = 0
+                for item in all_catalog_items:
+                    item['index'] = index
+                    index += 1
+                return all_catalog_items
+            except Exception, errmsg:
+                return None
+        else:
+            return None
 
 #    @classmethod
 #    def edit(self):
