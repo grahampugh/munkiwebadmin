@@ -19,11 +19,7 @@
 	{% for pkg in all_catalog_items %}
 			<tr>
 				<td class='item-name'>{{ pkg.name }}</td>
-				<td class='version'>
-		{% for item in pkg.version %}
-					{{ item.version }}<br />
-		{% endfor %}
-				</td>
+				<td class='version'>{{ pkg.version }}</td>
 				<td class='catalog'>
 		{% for catalog in pkg.catalogs %}
 					{{ catalog }}<br />
