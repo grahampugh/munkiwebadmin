@@ -31,14 +31,17 @@ def index(request):
 
 @csrf_protect
 def confirm(request):
+    context = {}
+    request_context = RequestContext(request)
     if request.method == 'POST': # If the form has been submitted...
-        dest_catalog = RequestContext(request.POST.get('catalog'))
-        checked_pkgs = RequestContext(request.POST.getlist('items_to_move[]'))
+        dest_catalog = request.POST.get('catalog')
+        checked_pkgs = request.POST.getlist('items_to_move[]')
         checked_pkg_names = []
         checked_pkg_versions = []
         for pkg in checked_pkgs:
             tuple(pkg.split('_'))
-    return render_to_response('pkginfo/confirm.html',
+    return render_to_response('pkginfo/confirm.html', 
+                              request_context = request_context,
                               {'user': request.user,
                                'dest_catalog': dest_catalog,
                                'checked_pkgs': checked_pkgs,
