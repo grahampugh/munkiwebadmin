@@ -58,20 +58,20 @@ class Pkginfo(object):
         done = False
         for root, dirs, files in os.walk(os.path.join(REPO_DIR,'pkgsinfo'), topdown=False):
             for name in files:
-            # Try, because it's conceivable there's a broken / non plist
-            plist = None
-            try:
-                plist = plistlib.readPlist(os.path.join(root, name))
-            except:
-                pass
-            if plist and plist['name'] == pkg_name and plist['version'] == pkg_version:
-                plist['catalogs'] = [pkg_catalog]
-                plistlib.writePlist(plist, os.path.join(root, name))
-                run_makecatalogs = True
-                done = True
+                # Try, because it's conceivable there's a broken / non plist
+                plist = None
+                try:
+                    plist = plistlib.readPlist(os.path.join(root, name))
+                except:
+                    pass
+                if plist and plist['name'] == pkg_name and plist['version'] == pkg_version:
+                    plist['catalogs'] = [pkg_catalog]
+                    plistlib.writePlist(plist, os.path.join(root, name))
+                    run_makecatalogs = True
+                    done = True
+                    break
+            if done:
                 break
-        if done:
-            break
 
     @classmethod
     def makecatalogs(self):
