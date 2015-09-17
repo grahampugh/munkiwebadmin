@@ -31,7 +31,6 @@ def index(request):
 
 @csrf_protect
 def confirm(request):
-    request_context = {}
     request_context = RequestContext(request)
     if request.method == 'POST': # If the form has been submitted...
         dest_catalog = request.POST.get('catalog')
@@ -40,12 +39,12 @@ def confirm(request):
         checked_pkg_versions = []
         for pkg in checked_pkgs:
             tuple(pkg.split('_'))
+        c = {'user': request.user,
+             'dest_catalog': dest_catalog,
+             'checked_pkgs': checked_pkgs}
         return render_to_response('pkginfo/confirm.html', 
-                              request_context,
-                              {'user': request.user,
-                               'dest_catalog': dest_catalog,
-                               'checked_pkgs': checked_pkgs,
-                               })
+                                  c,
+                                  request_context)
     else
         return HttpResponse("No form submitted.\n")
 
