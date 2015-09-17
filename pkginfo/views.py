@@ -31,15 +31,16 @@ def index(request):
 
 @login_required
 def confirm(request):
-    request_context = RequestContext(request)
+    request_context = {}
+    request_context.update(csrf(request))
     if request.method == 'POST': # If the form has been submitted...
         dest_catalog = request_context.POST.get('catalog')
-        checked_pkgs = request.POST.getlist('items_to_move[]')
+        checked_pkgs = request_context.POST.getlist('items_to_move[]')
         checked_pkg_names = []
         checked_pkg_versions = []
         for pkg in checked_pkgs:
             tuple(pkg.split('_'))
-        c = {'user': request.user,
+        c = {'user': request_context.user,
              'dest_catalog': dest_catalog,
              'checked_pkgs': checked_pkgs}
         return render_to_response('pkginfo/confirm.html', 
