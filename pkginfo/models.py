@@ -1,10 +1,34 @@
 #from django.db import models
 import os
+import sys
 import plistlib
+import optparse
 
 from django.conf import settings
 
+DEFAULT_MAKECATALOGS = "/usr/local/munki/makecatalogs"
 REPO_DIR = settings.MUNKI_REPO_DIR
+
+def fail(message):
+    sys.stderr.write(message)
+    sys.exit(1)
+
+def execute(command):    
+    popen = subprocess.Popen(command, stdout=subprocess.PIPE)
+    lines_iterator = iter(popen.stdout.readline, b"")
+    for line in lines_iterator:
+        print(line) # yield line
+
+usage = "%prog [options]"
+o = optparse.OptionParser(usage=usage)
+
+o.add_option("--makecatalogs", default=DEFAULT_MAKECATALOGS,
+    help=("Path to makecatalogs. Defaults to '%s'. "
+              % DEFAULT_MAKECATALOGS))
+
+opts, args = o.parse_args()
+
+MAKECATALOGS = opts.makecatalogs
 
 # Read contents of all pkginfo files. You should be able to do this by reading the contents of catalogs/all
 
@@ -28,5 +52,27 @@ class Pkginfo(object):
         else:
             return None
 
+    @classmethod
+    def move(self, pkg_name, pkg_version, pkg_catalog):
+        '''Rewrites the catalog of the selected pkginfo files. Taken from grahamgilbert/munki-trello'''
+        done = False
+        for root, dirs, files in os.walk(os.path.join(REPO_DIR,'pkgsinfo'), topdown=False):
+            for name in files:
+            # Try, because it's conceivable there's a broken / non plist
+            plist = None
+            try:
+                plist = plistlib.readPlist(os.path.join(root, name))
+            except:
+                pass
+            if plist and plist['name'] == pkg_name and plist['version'] == pkg_version:
+                plist['catalogs'] = [pkg_catalog]
+                plistlib.writePlist(plist, os.path.join(root, name))
+                run_makecatalogs = True
+                done = True
+                break
+        if done:
+            break
 
-
+    @classmethod
+    def makecatalogs(self):
+        task = execute([MAKECATALOGS, REPO_DIR])

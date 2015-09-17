@@ -41,14 +41,27 @@ def confirm(request):
         c = {'user': request.user,
              'dest_catalog': dest_catalog,
              'items_to_move': items_to_move}
-        return render_to_response('pkginfo/confirm.html', 
-                                  c)
+        return render_to_response('pkginfo/confirm.html', c)
     else:
         return HttpResponse("No form submitted.\n")
 
+@csrf_exempt
+def done(request)
+    if request.method == 'POST': # If the form has been submitted...
+        items_to_move = request.POST.getlist('items_to_move[]')
+        tuple(items_to_move)
+        for n,pkg in enumerate(items_to_move):
+            pkg = pkg.split('___')
+            items_to_move[n] = pkg
+        for pkg_name, pkg_version, pkg_catalog in items_to_move:
+            Pkginfo.move(pkg_name, pkg_version, pkg_catalog)
+        Pkginfo.makecatalogs()
+                c = {'user': request.user,
+                     'done': 'Done'}
+        return render_to_response('pkginfo/done.html', c)
+
 
         # for each item in checked
-            # split back to version and string
             # look up path to file in catalog details
             # edit catalogs field in the file
             # set a variable to state that something has changed

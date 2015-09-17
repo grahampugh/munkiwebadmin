@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block extra_style %}
+<link rel="stylesheet" href="/manifests/css/manifests.css" type="text/css" media="all" />
+{% endblock extra_style %}
+
+{% block content %}
+<h3>Package catalogs have been updated</h3>
+
+{% if done %}
+	<p><i>Makecatalogs has updated the catalogs.</i></p>
+{% else %}
+	<p><i>No Packages to move.</i></p>
+{% endif %}
+{% endblock content %}
