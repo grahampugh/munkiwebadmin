@@ -41,7 +41,7 @@ def confirm(request):
         for pkg in checked_pkgs:
             tuple(pkg.split('_'))
     return render_to_response('pkginfo/confirm.html', 
-                              request_context = request_context,
+                              request_context,
                               {'user': request.user,
                                'dest_catalog': dest_catalog,
                                'checked_pkgs': checked_pkgs,
