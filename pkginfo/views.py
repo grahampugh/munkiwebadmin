@@ -46,7 +46,7 @@ def confirm(request):
         return HttpResponse("No form submitted.\n")
 
 @csrf_exempt
-def done(request)
+def done(request):
     if request.method == 'POST': # If the form has been submitted...
         items_to_move = request.POST.getlist('items_to_move[]')
         tuple(items_to_move)
