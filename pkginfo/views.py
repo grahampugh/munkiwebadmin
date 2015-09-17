@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
 from django.template import RequestContext
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.core.context_processors import csrf
 from django.views.decorators.csrf import csrf_protect
@@ -41,10 +41,13 @@ def confirm(request):
         checked_pkg_versions = []
         for pkg in checked_pkgs:
             tuple(pkg.split('_'))
-        context = {'user': request.user,
+        initialData = {'form': form}
+        c = {'user': request.user,
              'dest_catalog': dest_catalog,
              'checked_pkgs': checked_pkgs}
-        return render(request, 'pkginfo/confirm.html', context)
+        return render_to_response('pkginfo/confirm.html', 
+                                  c, initialData,
+                                  context_instance=RequestContext(request))
     else:
         return HttpResponse("No form submitted.\n")
 
