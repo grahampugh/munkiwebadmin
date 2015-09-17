@@ -45,7 +45,7 @@ def confirm(request):
         return render_to_response('pkginfo/confirm.html', 
                                   c,
                                   request_context)
-    else
+    else:
         return HttpResponse("No form submitted.\n")
 
 
