@@ -29,7 +29,7 @@ def index(request):
                                'catalog_name': catalog_name,
                                })
 
-@login_required
+@csrf_exempt
 def confirm(request):
     if request.method == 'POST': # If the form has been submitted...
         dest_catalog = request.POST.get('catalog')
