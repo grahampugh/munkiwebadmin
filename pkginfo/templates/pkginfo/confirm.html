@@ -11,6 +11,7 @@
 
 		{# Drop-down list for moving to a catalog #}
 <form id='move' action='/pkginfo/' method='post'>
+	{% csrf_token %}
 	<div class='well form-horizontal'>
 		<input class='btn' type='submit' value='Confirm Move' />
 	</div>
