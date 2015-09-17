@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
+from django.core.context_processors import csrf
 from django import forms
 
 from models import Pkginfo
