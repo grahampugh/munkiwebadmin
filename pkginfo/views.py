@@ -43,12 +43,12 @@ def confirm(request):
         for m,pkgm in enumerate(source_catalogs):
             pkgm = pkgm.split('___')
             source_catalogs[m] = pkgm
-        items_to_actually_move = tuple()
+        items_to_actually_move = ()
         for namecheck, versioncheck in items_to_move:
             for a,b,c in source_catalogs:
                 if namecheck == a and versioncheck == b:
                     if c != dest_catalog:
-                        items_to_actually_move.append = ( a, b, c )
+                        items_to_actually_move.append( a, b, c )
         c = {'user': request.user,
              'dest_catalog': dest_catalog,
              'items_to_actually_move': items_to_actually_move}
