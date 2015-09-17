@@ -34,7 +34,6 @@ def confirm(request):
     if request.method == 'POST': # If the form has been submitted...
         dest_catalog = request.POST.get('dest_catalog')
         items_to_move = request.POST.getlist('items_to_move[]')
-        tuple(source_catalogs)
         tuple(items_to_move)
         for n,pkg in enumerate(items_to_move):
             pkg = pkg.split('___')
