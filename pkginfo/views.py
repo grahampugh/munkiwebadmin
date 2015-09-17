@@ -59,6 +59,8 @@ def done(request):
         c = {'user': request.user,
              'done': 'Done'}
         return render_to_response('pkginfo/done.html', c)
+    else:
+        return HttpResponse("No form submitted.\n")
 
 
         # for each item in checked
