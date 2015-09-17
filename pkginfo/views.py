@@ -7,6 +7,7 @@ from models import Pkginfo
 from catalogs.models import Catalog
 
 import os
+import csv
 
 @login_required
 def index(request):
@@ -27,11 +28,23 @@ def index(request):
                                }
                               )
 
-# @login_required
-# def confirm(request):
-#     if request.method == 'POST': # If the form has been submitted...
-#         catalog = request.POST.get('catalog')
-#         checked = request.POST.getlist('items_to_move[]')
+@login_required
+def confirm(request):
+    if request.method == 'POST': # If the form has been submitted...
+        dest_catalog = request.POST.get('catalog')
+        checked_pkgs = request.POST.getlist('items_to_move[]')
+        checked_pkg_names = []
+        checked_pkg_versions = []
+        for pkg in checked_pkgs:
+            tuple(pkg.split('_'))
+    return render_to_response('pkginfo/confirm.html',
+                              {'user': request.user,
+                               'dest_catalog': dest_catalog,
+                               'checked_pkgs': checked_pkgs,
+                               }
+                              )
+
+
         # for each item in checked
             # split back to version and string
             # look up path to file in catalog details

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block extra_style %}
+<link rel="stylesheet" href="/manifests/css/manifests.css" type="text/css" media="all" />
+{% endblock extra_style %}
+
+{% block content %}
+<h3>Confirm move packages</h3>
+
+{% if dest_catalog %}
+
+		{# Drop-down list for moving to a catalog #}
+<form id='move' action='/pkginfo/' method='post'>
+	<div class='well form-horizontal'>
+		<input class='btn' type='submit' value='Confirm Move' />
+	</div>
+
+	<p/>
+	<table class='pkglist table table-striped table-condensed'>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Version</th>
+				<th>Destination Catalog</th>
+			</tr>
+		</thead>
+		<tbody>
+	{% for pkg in checked_pkgs %}
+			<tr>
+				<td class='item-name'>{{ pkg.0 }}</td>
+				<td class='version'>{{ pkg.1 }}</td>
+				<td class='catalog'>{{ dest_catalog }}</td>
+			</tr>
+	{% endfor %}
+		</tbody>
+	</table>
+</form>
+{% else %}
+	<p><i>No Packages.</i></p>
+{% endif %}
+{% endblock content %}
