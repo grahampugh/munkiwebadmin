@@ -37,7 +37,7 @@ def confirm(request):
         checked_pkg_names = []
         checked_pkg_versions = []
         for pkg in checked_pkgs:
-            tuple(pkg.split('_'))
+            pkg = tuple(pkg.split('___'))
         c = {'user': request.user,
              'dest_catalog': dest_catalog,
              'checked_pkgs': checked_pkgs}
