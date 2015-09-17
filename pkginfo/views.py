@@ -31,9 +31,9 @@ def index(request):
 
 @csrf_exempt
 def confirm(request):
-    if request.method == 'GET': # If the form has been submitted...
-        dest_catalog = request.GET.get('dest_catalog')
-        items_to_move = request.GET.getlist('items_to_move[]')
+    if request.method == 'POST': # If the form has been submitted...
+        dest_catalog = request.POST.get('dest_catalog')
+        items_to_move = request.POST.getlist('items_to_move[]')
         tuple(items_to_move)
         for n,pkg in enumerate(items_to_move):
             pkg = pkg.split('___')

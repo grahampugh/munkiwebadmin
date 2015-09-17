@@ -10,7 +10,7 @@
 {% if all_catalog_items %}
 
 	{# Drop-down list for moving to a catalog #}
-<form id='move' action='/pkginfo/confirm/' method='get'>
+<form id='move' action='/pkginfo/confirm/' method='post'>
 	<div class='well form-horizontal'>
 		<label for='section'>Move selected packages to catalog:</label>
 		<select class='span2' id='section' name='dest_catalog'>
