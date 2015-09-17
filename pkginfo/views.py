@@ -1,8 +1,8 @@
 from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
 from django.template import RequestContext
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
-from django.core.context_processors import csrf
+from django.template.context_processors import csrf
 from django import forms
 
 from models import Pkginfo
@@ -33,7 +33,7 @@ def index(request):
 def confirm(request):
     request_context = RequestContext(request)
     if request.method == 'POST': # If the form has been submitted...
-        dest_catalog = request.POST.get('catalog')
+        dest_catalog = request_context.POST.get('catalog')
         checked_pkgs = request.POST.getlist('items_to_move[]')
         checked_pkg_names = []
         checked_pkg_versions = []
