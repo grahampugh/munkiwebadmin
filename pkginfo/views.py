@@ -32,7 +32,7 @@ def index(request):
 @csrf_exempt
 def confirm(request):
     if request.method == 'GET': # If the form has been submitted...
-        dest_catalog = request.GET.get('catalog')
+        dest_catalog = request.GET.get('dest_catalog')
         checked_pkgs = request.GET.getlist('items_to_move[]')
         checked_pkg_names = []
         checked_pkg_versions = []
