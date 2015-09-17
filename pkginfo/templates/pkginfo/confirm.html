@@ -30,7 +30,7 @@
 		{% if orig_catalog != dest_catalog %}
 			<tr>
 				<td class='item-name'>
-				<input type='hidden' name='items_to_move[]' value='{{ package }}__{{ version }}__{{ dest_catalog }}' />
+				<input type='hidden' name='final_items_to_move[]' value='{{ package }}__{{ version }}__{{ dest_catalog }}' />
 				{{ package }}</td>
 				<td class='version'>{{ version }}</td>
 				<td class='orig_catalog'>{{ orig_catalog }}</td>

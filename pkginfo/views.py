@@ -48,12 +48,12 @@ def confirm(request):
 @csrf_exempt
 def done(request):
     if request.method == 'POST': # If the form has been submitted...
-        items_to_move = request.POST.getlist('items_to_move[]')
-        tuple(items_to_move)
-        for n,pkg in enumerate(items_to_move):
+        final_items_to_move = request.POST.getlist('final_items_to_move[]')
+        tuple(final_items_to_move)
+        for n,pkg in enumerate(final_items_to_move):
             pkg = pkg.split('___')
-            items_to_move[n] = pkg
-        for pkg_name, pkg_version, pkg_catalog in items_to_move:
+            final_items_to_move[n] = pkg
+        for pkg_name, pkg_version, pkg_catalog in final_items_to_move:
             Pkginfo.move(pkg_name, pkg_version, pkg_catalog)
         Pkginfo.makecatalogs()
         c = {'user': request.user,
