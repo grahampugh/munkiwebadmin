@@ -37,7 +37,7 @@
 				<td class='item-name'>{{ pkg.name }}</td>
 				<td class='version'>{{ pkg.version }}</td>
 				<td class='catalog'>
-		{% for catalog in pkg.list:'catalogs' %}
+		{% for catalog in pkg.catalogs %}
 					{{ catalog }}<br />
 		{% endfor %}
 				</td>
