@@ -46,7 +46,7 @@ def confirm(request):
         items_to_actually_move = tuple()
         for namecheck, versioncheck in items_to_move:
             for a,b,c in source_catalogs:
-                if namecheck == a and versioncheck == b":
+                if namecheck == a and versioncheck == b:
                     if c != dest_catalog:
                         items_to_actually_move.append = ( a, b, c )
         c = {'user': request.user,
