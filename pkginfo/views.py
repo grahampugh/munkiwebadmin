@@ -56,8 +56,8 @@ def done(request):
         for pkg_name, pkg_version, pkg_catalog in items_to_move:
             Pkginfo.move(pkg_name, pkg_version, pkg_catalog)
         Pkginfo.makecatalogs()
-                c = {'user': request.user,
-                     'done': 'Done'}
+        c = {'user': request.user,
+             'done': 'Done'}
         return render_to_response('pkginfo/done.html', c)
 
 
