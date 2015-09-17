@@ -29,18 +29,4 @@ class Pkginfo(object):
             return None
 
 
-#     @classmethod
-#     def item_detail(self, item_index):
-#         '''Returns detail for a single pkg'''
-#         all_catalog_path = os.path.join(
-#             REPO_DIR, 'catalogs/all')
-#         if os.path.exists(all_catalog_path):
-#             try:
-#                 all_catalog_items = plistlib.readPlist(all_catalog_path)
-#                 return all_catalog_items[int(item_index)]
-#             except Exception, errmsg:
-#                 return None
-#         else:
-#             return None
-
 
