@@ -34,13 +34,24 @@ def confirm(request):
     if request.method == 'POST': # If the form has been submitted...
         dest_catalog = request.POST.get('dest_catalog')
         items_to_move = request.POST.getlist('items_to_move[]')
+        source_catalogs = request.POST.getlist('source_catalogs[]')
+        tuple(source_catalogs)
         tuple(items_to_move)
         for n,pkg in enumerate(items_to_move):
             pkg = pkg.split('___')
             items_to_move[n] = pkg
+        for m,pkgm in enumerate(source_catalogs):
+            pkgm = pkgm.split('___')
+            source_catalogs[m] = pkgm
+        items_to_actually_move = tuple()
+        for namecheck, versioncheck in items_to_move:
+            for a,b,c in source_catalogs:
+                if namecheck == a and versioncheck == b":
+                    if c != dest_catalog:
+                        items_to_actually_move.append = ( a, b, c )
         c = {'user': request.user,
              'dest_catalog': dest_catalog,
-             'items_to_move': items_to_move}
+             'items_to_actually_move': items_to_actually_move}
         return render_to_response('pkginfo/confirm.html', 
                                   c)
     else:
