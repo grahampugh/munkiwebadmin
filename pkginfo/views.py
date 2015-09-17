@@ -2,8 +2,7 @@ from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
-from django.core.context_processors import csrf
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_exempt
 from django import forms
 
 from models import Pkginfo
@@ -33,8 +32,6 @@ def index(request):
 
 @login_required
 def confirm(request):
-#    request_context = {}
-#    request_context.update(csrf(request))
     if request.method == 'POST': # If the form has been submitted...
         dest_catalog = request.POST.get('catalog')
         checked_pkgs = request.POST.getlist('items_to_move[]')
@@ -46,8 +43,7 @@ def confirm(request):
              'dest_catalog': dest_catalog,
              'checked_pkgs': checked_pkgs}
         return render_to_response('pkginfo/confirm.html', 
-                                  c,
-                                  context_instance=RequestContext(request))
+                                  c)
     else:
         return HttpResponse("No form submitted.\n")
 
