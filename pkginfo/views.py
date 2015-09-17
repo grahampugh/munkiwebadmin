@@ -27,8 +27,7 @@ def index(request):
                                'all_catalog_items': all_catalog_items,
                                'catalog_list': catalog_list,
                                'catalog_name': catalog_name,
-                               },
-                               context_instance=RequestContext(request))
+                               })
 
 @login_required
 def confirm(request):
