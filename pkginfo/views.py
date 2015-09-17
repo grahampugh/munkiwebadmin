@@ -33,8 +33,8 @@ def index(request):
 @login_required
 def confirm(request):
     if request.method == 'POST': # If the form has been submitted...
-        dest_catalog = request.POST.get('catalog')
-        checked_pkgs = request.POST.getlist('items_to_move[]')
+        dest_catalog = RequestContext(request.POST.get('catalog'))
+        checked_pkgs = RequestContext(request.POST.getlist('items_to_move[]'))
         checked_pkg_names = []
         checked_pkg_versions = []
         for pkg in checked_pkgs:
