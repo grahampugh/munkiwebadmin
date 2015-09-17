@@ -44,7 +44,7 @@ def confirm(request):
                                'dest_catalog': dest_catalog,
                                'checked_pkgs': checked_pkgs,
                                }
-                              )
+                               RequestContext(request))
 
 
         # for each item in checked
