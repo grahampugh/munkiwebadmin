@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
-from django.template.context_processors import csrf
+from django.core.context_processors import csrf
 from django import forms
 
 from models import Pkginfo
