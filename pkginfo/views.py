@@ -3,6 +3,7 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.core.context_processors import csrf
+from django.views.decorators.csrf import csrf_protect
 from django import forms
 
 from models import Pkginfo
@@ -31,21 +32,21 @@ def index(request):
 
 @login_required
 def confirm(request):
-    request_context = {}
-    request_context.update(csrf(request))
+#    request_context = {}
+#    request_context.update(csrf(request))
     if request.method == 'POST': # If the form has been submitted...
-        dest_catalog = request_context.POST.get('catalog')
-        checked_pkgs = request_context.POST.getlist('items_to_move[]')
+        dest_catalog = request.POST.get('catalog')
+        checked_pkgs = request.POST.getlist('items_to_move[]')
         checked_pkg_names = []
         checked_pkg_versions = []
         for pkg in checked_pkgs:
             tuple(pkg.split('_'))
-        c = {'user': request_context.user,
+        c = {'user': request.user,
              'dest_catalog': dest_catalog,
              'checked_pkgs': checked_pkgs}
         return render_to_response('pkginfo/confirm.html', 
                                   c,
-                                  request_context)
+                                  context_instance=RequestContext(request))
     else:
         return HttpResponse("No form submitted.\n")
 
