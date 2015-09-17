@@ -33,14 +33,14 @@ def index(request):
 def confirm(request):
     if request.method == 'GET': # If the form has been submitted...
         dest_catalog = request.GET.get('dest_catalog')
-        checked_pkgs = request.GET.getlist('items_to_move[]')
-        checked_pkg_names = []
-        checked_pkg_versions = []
-        for pkg in checked_pkgs:
-            pkg = tuple(pkg.split('___'))
+        items_to_move = request.GET.getlist('items_to_move[]')
+        tuple(items_to_move)
+        for n,pkg in enumerate(items_to_move):
+            pkg = pkg.split('___')
+            items_to_move[n] = pkg
         c = {'user': request.user,
              'dest_catalog': dest_catalog,
-             'checked_pkgs': checked_pkgs}
+             'items_to_move': items_to_move}
         return render_to_response('pkginfo/confirm.html', 
                                   c)
     else:

@@ -25,10 +25,10 @@
 			</tr>
 		</thead>
 		<tbody>
-	{% for pkg in checked_pkgs %}
+	{% for pkg,vrs in items_to_move %}
 			<tr>
-				<td class='item-name'>{{ pkg.0 }}</td>
-				<td class='version'>{{ pkg.1 }}</td>
+				<td class='item-name'>{{ pkg }}</td>
+				<td class='version'>{{ vrs }}</td>
 				<td class='catalog'>{{ dest_catalog }}</td>
 			</tr>
 	{% endfor %}
