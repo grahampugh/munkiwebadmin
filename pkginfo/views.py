@@ -27,8 +27,7 @@ def index(request):
                                'all_catalog_items': all_catalog_items,
                                'catalog_list': catalog_list,
                                'catalog_name': catalog_name,
-                               }
-                              )
+                               })
 
 @csrf_protect
 def confirm(request):
@@ -43,8 +42,7 @@ def confirm(request):
                               {'user': request.user,
                                'dest_catalog': dest_catalog,
                                'checked_pkgs': checked_pkgs,
-                               }
-                               RequestContext(request))
+                               })
 
 
         # for each item in checked
