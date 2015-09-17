@@ -56,9 +56,10 @@ def done(request):
         for pkg_name, pkg_version, pkg_catalog in final_items_to_move:
             Pkginfo.move(pkg_name, pkg_version, pkg_catalog)
         Pkginfo.makecatalogs()
-        c = {'user': request.user,
-             'done': 'Done'}
-        return render_to_response('pkginfo/done.html', c)
+        context = {'user': request.user,
+                   'final_items_to_move': final_items_to_move,
+                   'done': 'Done'}
+        return render_to_response('pkginfo/done.html', context)
     else:
         return HttpResponse("No form submitted.\n")
 
