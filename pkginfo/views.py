@@ -28,7 +28,8 @@ def index(request):
                                'all_catalog_items': all_catalog_items,
                                'catalog_list': catalog_list,
                                'catalog_name': catalog_name,
-                               })
+                               },
+                               context_instance=RequestContext(request))
 
 @login_required
 def confirm(request):
@@ -41,12 +42,11 @@ def confirm(request):
         checked_pkg_versions = []
         for pkg in checked_pkgs:
             tuple(pkg.split('_'))
-        initialData = {'form': form}
         c = {'user': request.user,
              'dest_catalog': dest_catalog,
              'checked_pkgs': checked_pkgs}
         return render_to_response('pkginfo/confirm.html', 
-                                  c, initialData,
+                                  c,
                                   context_instance=RequestContext(request))
     else:
         return HttpResponse("No form submitted.\n")
