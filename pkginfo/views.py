@@ -11,7 +11,7 @@ from catalogs.models import Catalog
 import os
 import csv
 
-@login_required
+@csrf_protect
 def index(request):
     all_catalog_items = Pkginfo.detail()
     catalog_list = Catalog.list()
@@ -30,7 +30,7 @@ def index(request):
                                }
                               )
 
-@login_required
+@csrf_protect
 def confirm(request):
     if request.method == 'POST': # If the form has been submitted...
         dest_catalog = RequestContext(request.POST.get('catalog'))
