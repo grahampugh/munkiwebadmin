@@ -40,20 +40,9 @@ def confirm(request):
         for n,pkg in enumerate(items_to_move):
             pkg = pkg.split('___')
             items_to_move[n] = pkg
-        for m,pkgm in enumerate(source_catalogs):
-            pkgm = pkgm.split('___')
-            source_catalogs[m] = pkgm
-        items_to_actually_move = ()
-        for namecheck, versioncheck in items_to_move:
-            for a,b,c in source_catalogs:
-                if namecheck == a and versioncheck == b:
-                    if c != dest_catalog and items_to_actually_move == ():
-                        items_to_actually_move = items_to_actually_move, ( a, b, c )
-                    elif c != dest_catalog:
-                        items_to_actually_move = ( a, b, c )
         c = {'user': request.user,
              'dest_catalog': dest_catalog,
-             'items_to_actually_move': items_to_actually_move}
+             'items_to_move': items_to_move}
         return render_to_response('pkginfo/confirm.html', 
                                   c)
     else:

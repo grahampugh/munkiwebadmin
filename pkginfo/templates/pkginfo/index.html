@@ -38,11 +38,14 @@
 				<td class='version'>{{ pkg.version }}</td>
 				<td class='catalog'>
 		{% for catalog in pkg.catalogs %}
-					{{ catalog }}
-					<input type='hidden' name='source_catalogs[]' value='{{ pkg.name }}___{{ pkg.version }}___{{ catalog }}' /><br />
+					{{ catalog }} <br />
 		{% endfor %}
 				</td>
-				<td class='checked'><input type='checkbox' name='items_to_move[]' value='{{ pkg.name }}___{{ pkg.version }}' /></td>
+				<td class='checked'>
+		{% for catalog in pkg.catalogs %}
+					<input type='checkbox' name='items_to_move[]' value='{{ pkg.name }}___{{ pkg.version }}___{{ catalog }}' /><br />
+		{% endfor %}
+				</td>
 			</tr>
 	{% endfor %}
 		</tbody>

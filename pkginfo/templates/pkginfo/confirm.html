@@ -7,7 +7,7 @@
 {% block content %}
 <h3>Confirm move packages</h3>
 
-{% if items_to_actually_move %}
+{% if items_to_move %}
 
 		{# Drop-down list for moving to a catalog #}
 <form id='move' action='/pkginfo/' method='post'>
@@ -26,12 +26,12 @@
 			</tr>
 		</thead>
 		<tbody>
-	{% for package, version, origin in items_to_actually_move %}
+	{% for package, version, orig_catalog in items_to_move where orig_catalog != dest_catalog %}
 			<tr>
 				<td class='item-name'>{{ package }}</td>
 				<td class='version'>{{ version }}</td>
-				<td class='catalog'>{{ origin }}</td>
-				<td class='catalog'>{{ dest_catalog }}</td>
+				<td class='orig_catalog'>{{ orig_catalog }}</td>
+				<td class='dest_catalog'>{{ dest_catalog }}</td>
 			</tr>
 	{% endfor %}
 		</tbody>
