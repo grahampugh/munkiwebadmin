@@ -7,7 +7,8 @@ import optparse
 
 from django.conf import settings
 
-DEFAULT_MAKECATALOGS = "/usr/local/munki/makecatalogs"
+#DEFAULT_MAKECATALOGS = "/usr/local/munki/makecatalogs"
+DEFAULT_MAKECATALOGS = "/munki-tools/code/client/makecatalogs"
 REPO_DIR = settings.MUNKI_REPO_DIR
 
 def fail(message):
