@@ -11,6 +11,8 @@ from catalogs.models import Catalog
 import os
 import csv
 
+PROD_CATALOG = "production" # change this if your production catalog is different
+
 @login_required
 def index(request):
     all_catalog_items = Pkginfo.detail()
