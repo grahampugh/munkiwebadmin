@@ -16,10 +16,8 @@ def index(request):
     all_catalog_items = Pkginfo.detail()
     catalog_list = Catalog.list()
     catalog_name = 'none'
-    if 'production' in catalog_list:
-        catalog_name = 'production'
-    elif 'standard' in catalog_list:
-        catalog_name = 'standard'
+    if PROD_CATALOG in catalog_list:
+        catalog_name = PROD_CATALOG
     elif 'testing' in catalog_list:
         catalog_name = 'testing'
     return render_to_response('pkginfo/index.html',
