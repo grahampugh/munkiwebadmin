@@ -26,9 +26,6 @@ def index(request):
         catalog_name = PROD_CATALOG
     elif 'testing' in catalog_list:
         catalog_name = 'testing'
-    if request.method == 'GET':
-        findtext = request.GET.get('findtext', '')
-        catalog_list = Catalog.list(findtext)
     return render_to_response('pkginfo/index.html',
                               {'user': request.user,
                                'all_catalog_items': all_catalog_items,
