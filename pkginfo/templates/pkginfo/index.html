@@ -7,8 +7,6 @@
 {% block content %}
 <h3>Packages</h3>
 
-{% if all_catalog_items %}
-
 	{# Filter packages #}
 
 <form id='move' action='/pkginfo/' method='get'>
@@ -17,6 +15,8 @@
 		<input class='btn' type='submit' name='filter' value='Filter' />
 	</div>
 </form>
+
+{% if all_catalog_items %}
 
 	{# Drop-down list for moving to a catalog #}
 
