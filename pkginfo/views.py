@@ -15,17 +15,20 @@ PROD_CATALOG = "production" # change this if your production catalog is differen
 
 @login_required
 def index(request):
-    all_catalog_items = Pkginfo.detail()
     if request.method == 'GET':
         findtext = request.GET.get('findtext', '')
-        catalog_list = Catalog.list(findtext)
+        all_catalog_items = Pkginfo.detail(findtext)
     else:
-        catalog_list = Catalog.list()
+        all_catalog_items = Pkginfo.detail()
+    catalog_list = Catalog.list()
     catalog_name = 'none'
     if PROD_CATALOG in catalog_list:
         catalog_name = PROD_CATALOG
     elif 'testing' in catalog_list:
         catalog_name = 'testing'
+    if request.method == 'GET':
+        findtext = request.GET.get('findtext', '')
+        catalog_list = Catalog.list(findtext)
     return render_to_response('pkginfo/index.html',
                               {'user': request.user,
                                'all_catalog_items': all_catalog_items,
@@ -66,10 +69,3 @@ def done(request):
         return render_to_response('pkginfo/done.html', context)
     else:
         return HttpResponse("No form submitted.\n")
-
-
-        # for each item in checked
-            # look up path to file in catalog details
-            # edit catalogs field in the file
-            # set a variable to state that something has changed
-        # if something has changed, makecatalogs
