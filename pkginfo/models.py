@@ -4,6 +4,8 @@ import sys
 import subprocess
 import plistlib
 import optparse
+import fnmatch
+
 
 from django.conf import settings
 
@@ -50,9 +52,9 @@ class Pkginfo(object):
                     index += 1
                 if findtext:
                     filtered_list = []
-                    for n,name in all_catalog_items:
-                        if findtext == name:
-                            filtered.list.append(all_catalog_items[n])
+                    for item in all_catalog_items:
+                        if fnmatch.fnmatch(item['name'], findtext):
+                            filtered.list.append(item)
                     return filtered_list
                 else:
                     return all_catalog_items
