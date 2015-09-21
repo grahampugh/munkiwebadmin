@@ -54,7 +54,7 @@ class Pkginfo(object):
                     filtered_list = []
                     for item in all_catalog_items:
                         if fnmatch.fnmatch(item['name'], findtext):
-                            filtered.list.append(item)
+                            filtered_list.append(item)
                     return filtered_list
                 else:
                     return all_catalog_items
