@@ -38,7 +38,7 @@ MAKECATALOGS = opts.makecatalogs
 
 class Pkginfo(object):
     @classmethod
-    def detail(self, findtext=None):
+    def detail(self, findtext):
         '''Returns a list of available pkgs, which is a list
         of pkg names (strings)'''
         all_catalog_path = os.path.join(REPO_DIR, 'catalogs/all')
