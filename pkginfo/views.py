@@ -15,7 +15,7 @@ PROD_CATALOG = "production" # change this if your production catalog is differen
 @login_required
 def index(request):
     if request.method == 'GET':
-        findtext = request.GET.get('findtext', '')
+        findtext = request.GET.get('findtext')
         all_catalog_items = Pkginfo.detail(findtext)
     else:
         all_catalog_items = Pkginfo.detail()
