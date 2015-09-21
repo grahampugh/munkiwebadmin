@@ -36,7 +36,7 @@ MAKECATALOGS = opts.makecatalogs
 
 class Pkginfo(object):
     @classmethod
-    def detail(self):
+    def detail(self, findtext=None):
         '''Returns a list of available pkgs, which is a list
         of pkg names (strings)'''
         all_catalog_path = os.path.join(REPO_DIR, 'catalogs/all')
@@ -48,7 +48,14 @@ class Pkginfo(object):
                 for item in all_catalog_items:
                     item['index'] = index
                     index += 1
-                return all_catalog_items
+                if findtext:
+                    filtered_list = []
+                    for n,name in all_catalog_items:
+                        if findtext == name:
+                            filtered.list.append(all_catalog_items[n])
+                    return filtered_list
+                else:
+                    return all_catalog_items
             except Exception, errmsg:
                 return None
         else:

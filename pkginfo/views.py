@@ -16,7 +16,11 @@ PROD_CATALOG = "production" # change this if your production catalog is differen
 @login_required
 def index(request):
     all_catalog_items = Pkginfo.detail()
-    catalog_list = Catalog.list()
+    if request.method == 'GET':
+        findtext = request.GET.get('findtext', '')
+        catalog_list = Catalog.list(findtext)
+    else:
+        catalog_list = Catalog.list()
     catalog_name = 'none'
     if PROD_CATALOG in catalog_list:
         catalog_name = PROD_CATALOG
