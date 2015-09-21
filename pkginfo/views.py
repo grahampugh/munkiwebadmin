@@ -30,6 +30,7 @@ def index(request):
                                'all_catalog_items': all_catalog_items,
                                'catalog_list': catalog_list,
                                'catalog_name': catalog_name,
+                               'findtext': findtext
                                })
 
 @csrf_exempt
