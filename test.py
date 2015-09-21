@@ -1,14 +1,35 @@
 #!/usr/bin/python
 
-items_to_move = ['munkitools___4.0.2413', 'munkitools___4.1.2518']
+import os
+import sys
+import subprocess
+import plistlib
+import optparse
+import fnmatch, re
 
-tuple(items_to_move)
-print items_to_move
-for n,pkg in enumerate(items_to_move):
-	pkg = pkg.split('___')
-	print pkg
-	items_to_move[n] = pkg
-print items_to_move
+findtext='fire*'
+matcher = "Firefox"
+if fnmatch.fnmatch(matcher.lower(), findtext.lower()):
+	print "Match"
+else: print "No match"
 
-item = 'munkitools___4.0.2413'
-print item.split('___')
+all_catalog_path = '/Volumes/Images/vagrant/docker-munki/munki_repo/catalogs/all'
+if os.path.exists(all_catalog_path):
+	all_catalog_items = plistlib.readPlist(all_catalog_path)
+	all_catalog_items = sorted(all_catalog_items, key=lambda x: (x['name'].lower(), x['version']))
+	index = 0
+	for item in all_catalog_items:
+		item['index'] = index
+		index += 1
+	if findtext:
+		filtered_list = []
+		for item in all_catalog_items:
+			if fnmatch.fnmatch(item['name'].lower(), findtext.lower()):
+				filtered_list.append(item)
+		print "Filtered list:"
+		print filtered_list
+	else:
+		print "All the catalog:"
+		print all_catalog_items
+else:
+	print "Failed"
