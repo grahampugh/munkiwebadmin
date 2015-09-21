@@ -53,7 +53,7 @@ class Pkginfo(object):
                 if findtext:
                     filtered_list = []
                     for item in all_catalog_items:
-                        if fnmatch.fnmatch(item['name'].lower, findtext.lower):
+                        if fnmatch.fnmatch(item['name'].lower(), findtext.lower()):
                             filtered_list.append(item)
                     return filtered_list
                 else:
